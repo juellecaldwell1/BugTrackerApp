@@ -31,5 +31,8 @@
     "passport-google-oauth2": "^0.2.0"
   },
   "author": "juelle",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
 }
