@@ -22,8 +22,6 @@ app.use(cors({
   credentials: true,
 }));
 
-const user = () => {
-}
 
 app.use(express.json());
 app.use(cookieParser());

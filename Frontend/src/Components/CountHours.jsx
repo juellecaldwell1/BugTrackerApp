@@ -4,6 +4,7 @@ import Popup from "reactjs-popup";
 import axios from "axios";
 import { toast } from "react-toastify";
 const CountHours = ({ fetch, items }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [hours, setHours] = useState({
     timeLogged: 0,
   });
@@ -12,7 +13,7 @@ const CountHours = ({ fetch, items }) => {
   const handleTimeLogged = async (id) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/bug/${id}/time`,
+        `${apiUrl}/api/bug/${id}/time`,
         {
           timeLogged: hours.timeLogged,
         },

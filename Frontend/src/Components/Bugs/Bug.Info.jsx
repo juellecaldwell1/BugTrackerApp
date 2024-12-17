@@ -6,6 +6,7 @@ import BugSteps from "./Bug.Steps.jsx";
 import CountHours from "../CountHours.jsx";
 
 const ViewBugData = ({ info, fetch }) => {
+  
   const sum = info.timeLogged.reduce((accumulator, currentValue) => {
     return accumulator + currentValue;
   }, 0); 

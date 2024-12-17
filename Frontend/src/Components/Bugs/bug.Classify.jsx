@@ -6,6 +6,7 @@ import LoggedInRightNow from "../whosLoggedIn.jsx";
 import SuccessUpdates from "./update.Bugs.ToCurrent.jsx";
 
 const ClassifyBug = ({ bringItems, fetch }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [classification, setClassification] = useState({
     classification: "",
   });
@@ -15,7 +16,7 @@ const ClassifyBug = ({ bringItems, fetch }) => {
   const UpdateBugInformation = async (id) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/bug/${id}/classify`,
+        `${apiUrl}/api/bug/${id}/classify`,
         {
           classification: classification.classification,
         },

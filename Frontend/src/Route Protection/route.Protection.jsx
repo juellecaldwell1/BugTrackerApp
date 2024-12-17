@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import LoggedInRightNow from "../Components/whosLoggedIn.jsx";
 import { useNavigate, Outlet } from "react-router-dom";
 import axios from "axios";
+import {toast} from "react-toastify";
 const ConfirmUser = () => {
-
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
 const [error, setError] = useState(null);
 const [user, setUser] = useState(null);
@@ -12,7 +13,7 @@ const navigate = useNavigate();
 useEffect(() => {
 const getLoginStatus = async () => {
   try {
-    const response = await axios.get("http://localhost:4000/api/user/me", {
+    const response = await axios.get(`${apiUrl}/api/user/me`, {
       withCredentials: true,
     });
     setUser(response.data);

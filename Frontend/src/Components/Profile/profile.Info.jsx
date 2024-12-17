@@ -6,6 +6,7 @@ import { Bounce, ToastContainer, toast } from "react-toastify";
 import "../Profile/profile.css";
 import LoggedInRightNow from "../whosLoggedIn.jsx";
 const ChangeProfileInfo = () => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const { user1, error } = LoggedInRightNow();
   const [me, setMe] = useState(user1);
   const [password, setPassword] = useState("");
@@ -26,7 +27,7 @@ const ChangeProfileInfo = () => {
   const updateMe = async () => {
     try {
       const response = await axios.put(
-        "http://localhost:4000/api/user/me",
+        `${apiUrl}/api/user/me`,
         dataToSend,
         {
           withCredentials: true,

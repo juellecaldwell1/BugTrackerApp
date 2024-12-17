@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import LoggedInRightNow from "./whosLoggedIn.jsx";
 
 const EditUserPopup = ({ item, fetchUsers, users }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [updateData, setUpdateData] = useState({
     givenName: "",
     familyName: "",
@@ -34,7 +35,7 @@ const EditUserPopup = ({ item, fetchUsers, users }) => {
   const UpdateUserInformation = async (id, userGivenName) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/user/${id}`,
+        `${apiUrl}/api/user/${id}`,
         {
           givenName: updateData.givenName,
           familyName: updateData.familyName,

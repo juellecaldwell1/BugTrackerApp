@@ -8,7 +8,7 @@ import {toast} from "react-toastify"
 
 
 const CreateNewComment = ({ items, fetch, fetchComments}) => {
-
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
   const [comment, setComment] = useState({
     content: "",
@@ -18,7 +18,7 @@ const CreateNewComment = ({ items, fetch, fetchComments}) => {
   const Comment = async (id) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/bug/${id}/comment/new`,
+        `${apiUrl}/api/bug/${id}/comment/new`,
         {
           content: comment.content,
         },

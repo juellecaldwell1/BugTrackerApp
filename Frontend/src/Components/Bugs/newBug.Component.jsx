@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 const NewBug = () => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [error, setError] = useState('');
   const [bugInfo, setBugInfo] = useState({
     title: '',
@@ -14,7 +15,7 @@ const NewBug = () => {
 
   const PostNewBug = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/api/bug/new', bugInfo, {
+      const response = await axios.post(`${apiUrl}/api/bug/new`, bugInfo, {
         withCredentials: true,
       });
       if (response.status === 200) {

@@ -6,8 +6,10 @@ import LoggedInRightNow from './whosLoggedIn.jsx';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 
-
 const LoginForm = ({ passTheUserInfo }) => {
+
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+  
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
@@ -39,7 +41,7 @@ const LoginForm = ({ passTheUserInfo }) => {
     setIsLoading(true);
     setError('');
     try {
-      const response = await axios.post('http://localhost:4000/api/user/login', loginInfo, {
+      const response = await axios.post(`${apiUrl}/api/user/login`, loginInfo, {
         withCredentials: true,
       });
   
@@ -59,7 +61,6 @@ const LoginForm = ({ passTheUserInfo }) => {
       setIsLoading(false);
     }
   };
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-300 to-purple-500 p-4">
       <motion.div
@@ -69,7 +70,7 @@ const LoginForm = ({ passTheUserInfo }) => {
         className="w-full max-w-md"
       >
         <div className="backdrop-blur-lg bg-white/80 shadow-xl rounded-lg p-6">
-          <h2 className="text-2xl font-bold text-center">Welcome back</h2>
+          <h2 className="text-2xl font-bold text-center">Welcome back </h2>
           <p className="text-center text-gray-600">Enter your credentials to access your account</p>
           <div className="space-y-4 mt-6">
             <div className="space-y-2">

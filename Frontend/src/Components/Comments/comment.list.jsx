@@ -9,6 +9,7 @@ import CreateNewComment from "./create.Comment.jsx";
 import FireworkButton from "../Button Designs/button.Design.jsx";
 
 const ViewComments = ({ items, fetch }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
   const [comments, setComments] = useState([]);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -20,7 +21,7 @@ const ViewComments = ({ items, fetch }) => {
   const fetchComments = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/bug/${items._id}/comment/list`,
+        `${apiUrl}/api/bug/${items._id}/comment/list`,
         {
           withCredentials: true,
         }

@@ -6,12 +6,14 @@ import { motion } from "framer-motion";
 import LoggedInRightNow from "../whosLoggedIn.jsx";
 
 const StepsToFixBug = ({ steps, fetch }) => {
+
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [step, setStep] = useState("");
 
   const UpdateBugInformation = async (id) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/bug/${id}/steps`,
+        `${apiUrl}/api/bug/${id}/steps`,
         {
           stepsToFix: step,
         },

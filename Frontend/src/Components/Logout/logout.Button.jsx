@@ -5,9 +5,10 @@ import { Bounce, ToastContainer, toast } from "react-toastify";
 import {FaSignOutAlt } from "react-icons/fa";
 
 const LogOutNow = async () => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/user/logout",
+        `${apiUrl}/api/user/logout`,
         {},
         {
           withCredentials: true,

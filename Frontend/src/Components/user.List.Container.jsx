@@ -12,6 +12,7 @@ import EditUserPopup from "./user.Edit.Info.jsx";
 import { toast } from "react-toastify";
 
 const UserContainer = () => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [users, setUsers] = useState([]);
 
   const [disablePageDown, setDisablePageDown] = useState(false);
@@ -30,7 +31,7 @@ const UserContainer = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:4000/api/user/list", {
+      const response = await axios.get(`${apiUrl}/api/user/list`, {
         withCredentials: true,
       });
       if (response.status === 200) {
@@ -54,7 +55,7 @@ const UserContainer = () => {
   const fetchSortedData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:4000/api/user/list", {
+      const response = await axios.get(`${apiUrl}/api/user/list`, {
         params: {
           keywords: sortedData.keywords,
           role: sortedData.role,

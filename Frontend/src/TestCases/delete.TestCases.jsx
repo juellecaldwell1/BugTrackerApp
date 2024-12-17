@@ -6,13 +6,14 @@ import Popup from "reactjs-popup";
 import LoggedInRightNow from "../Components/whosLoggedIn.jsx";
 
 const DeleteBugTestCase = ({ testId, bugId, testInformation }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   const handleDeleteTestCase = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/bug/${bugId._id}/test/${testId._id}`,
+        `${apiUrl}/api/bug/${bugId._id}/test/${testId._id}`,
         {
           withCredentials: true,
         }

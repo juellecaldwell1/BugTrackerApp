@@ -11,6 +11,7 @@ import StepsToFixBug from "./bug.AssignStepsToFix.jsx";
 import SuccessUpdates from "./update.Bugs.ToCurrent.jsx";
 
 const MakeBugEdit = ({ items, fetch }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [updateData, setUpdateData] = useState({
     title: "",
     description: "",
@@ -23,7 +24,7 @@ const MakeBugEdit = ({ items, fetch }) => {
   const UpdateBugInformation = async (id) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/bug/${id}`,
+        `${apiUrl}/api/bug/${id}`,
         {
           title: updateData.title,
           description: updateData.description,

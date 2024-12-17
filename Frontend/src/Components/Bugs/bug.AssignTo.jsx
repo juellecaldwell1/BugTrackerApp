@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Users from "../RefreshData/refreshUserList.jsx";
 
 const AssignBug = ({ bringItems, fetch }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [assignedTo, setAssignedTo] = useState({
     assignedTo: "",
   });
@@ -16,7 +17,7 @@ const AssignBug = ({ bringItems, fetch }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/user/list", {
+      .get(`${apiUrl}/api/user/list`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -28,7 +29,7 @@ const AssignBug = ({ bringItems, fetch }) => {
   const UpdateBugInformation = async (id) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/bug/${id}/assign`,
+        `${apiUrl}/api/bug/${id}/assign`,
         {
           assignedTo: assignedTo.assignedTo,
         },

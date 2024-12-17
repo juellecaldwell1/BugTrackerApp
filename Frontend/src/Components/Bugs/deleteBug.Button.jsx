@@ -7,6 +7,7 @@ import LoggedInRightNow from "../whosLoggedIn.jsx";
 import RefreshBugs from "../RefreshData/refreshBugList.jsx";
 import SuccessUpdates from "./update.Bugs.ToCurrent.jsx";
 const DeleteBug = ({ id }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [errors, setError] = useState("");
   const [disabled, setDisable] = useState(false);
   const {fetchBugs} = SuccessUpdates()
@@ -14,7 +15,7 @@ const DeleteBug = ({ id }) => {
   const handleBugDeletion = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/bug/${id}`,
+        `${apiUrl}/api/bug/${id}`,
         {
           withCredentials: true,
         }

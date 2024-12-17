@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const LoggedInRightNow = () => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [user, setUser] = useState(null); 
   const [user1, setUser1] = useState({}); 
   const [loading, setLoading] = useState(true); 
@@ -9,7 +10,7 @@ const LoggedInRightNow = () => {
   const getMe = async () => {
     setLoading(true); 
     try {
-      const response = await axios.get("http://localhost:4000/api/user/me", {
+      const response = await axios.get(`${apiUrl}/api/user/me`, {
         withCredentials: true,
       });
       setUser(response.data);

@@ -6,6 +6,7 @@ import Popup from "reactjs-popup";
 import { motion } from "framer-motion";
 import LoggedInRightNow from "../Components/whosLoggedIn.jsx";
 const UpdateBugTestCase = ({ testId, bugId,testInformation }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [testCase, setTestCase] = useState({
     status: "",
   });
@@ -15,7 +16,7 @@ const UpdateBugTestCase = ({ testId, bugId,testInformation }) => {
   const UpdateTestInformation = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/bug/${bugId._id}/test/${testId._id}`,
+        `${apiUrl}/api/bug/${bugId._id}/test/${testId._id}`,
         {
           status: testCase.status,
         },

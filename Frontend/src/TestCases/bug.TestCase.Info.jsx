@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import LoggedInRightNow from "../Components/whosLoggedIn.jsx";
 
 const BugTestCase = ({ items, fetch }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [testCase, setTestCase] = useState([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -21,7 +22,7 @@ const BugTestCase = ({ items, fetch }) => {
     const TestInformation = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/bug/${items._id}/test/list`,
+          `${apiUrl}/api/bug/${items._id}/test/list`,
           {
             withCredentials: true,
           }

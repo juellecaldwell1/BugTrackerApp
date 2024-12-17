@@ -5,6 +5,7 @@ import BugModal from "./Bugs/bugModal.jsx";
 import { useState, useEffect } from "react";
 
 const Square = () => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [data, setData] = useState([]);
   const [bugData, setBugData] = useState([]);
   const [modal, setModal] = useState(null);
@@ -12,7 +13,7 @@ const Square = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/user/list");
+      const response = await axios.get(`${apiUrl}/api/user/list`);
       console.log("data has been fetched");
       if (response.status === 200) {
         setData(response.data);
@@ -64,7 +65,7 @@ const Square = () => {
   const fetchBugs = async () => {
     try {
       const otherResponse = await axios.get(
-        "http://localhost:4000/api/bug/list"
+        `${apiUrl}/api/bug/list`
       );
       console.log("data has been fetched");
       if (otherResponse.status === 200) {

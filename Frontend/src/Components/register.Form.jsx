@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 
 const RegisterForm = () => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [postedData, setPostedData] = useState({
     familyName: "",
     givenName: "",
@@ -17,7 +18,7 @@ const RegisterForm = () => {
   const PostData = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/user/register",
+        `${apiUrl}/api/user/register`,
         postedData
       );
       console.log(response.data);

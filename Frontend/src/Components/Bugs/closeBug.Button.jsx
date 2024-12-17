@@ -7,6 +7,7 @@ import LoggedInRightNow from "../whosLoggedIn.jsx";
 import RefreshBugs from "../RefreshData/refreshBugList.jsx";
 import SuccessUpdates from "./update.Bugs.ToCurrent.jsx";
 const CloseBug = ({ id }) => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [close, setClose] = useState(false);
   const [errors, setError] = useState("");
   const [disabled, setDisable] = useState(false);
@@ -31,7 +32,7 @@ const CloseBug = ({ id }) => {
   const handleClosingBug = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/bug/${id}/close`,
+        `${apiUrl}/api/bug/${id}/close`,
         {
           closed: close,
         },

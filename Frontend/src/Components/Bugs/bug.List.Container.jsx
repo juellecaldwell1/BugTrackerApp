@@ -15,6 +15,7 @@ import Card from "react-bootstrap/Card";
 import SuccessUpdates from "./update.Bugs.ToCurrent.jsx";
 
 const BugContainer = () => {
+  const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
   const [sortedData, setSortedData] = useState({
     keywords: "",
     classification: "",
@@ -35,7 +36,7 @@ const BugContainer = () => {
   const fetchSortedData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:4000/api/bug/list", {
+      const response = await axios.get(`${apiUrl}/api/bug/list`, {
         params: {
           keywords: sortedData.keywords,
           maxAge: sortedData.maxAge,
