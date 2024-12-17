@@ -1,3 +1,4 @@
 .vercel
 .env
 .roles.list.js
+node_modules
