@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import userInfo from "../Model/userSchema.js";
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import bugSchema from "../Model/bugSchema.js";
 import joiUserValidation from "./Joi.Validation/joi.User.Validation.js";
 import jwt from "jsonwebtoken";

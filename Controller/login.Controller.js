@@ -1,5 +1,5 @@
 import userInfo from "../Model/userSchema.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import joiUserValidation from "./Joi.Validation/joi.User.Validation.js";
 import tokens from "./JwtTokens/tokens.js";
 import jwt from "jsonwebtoken";
