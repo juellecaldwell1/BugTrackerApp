@@ -1,0 +1,35 @@
+{
+  "name": "lab0-2",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "lab 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@reis/joi-object-id": "^3.0.0",
+    "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "debug": "^4.3.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.1",
+    "form-data": "^4.0.1",
+    "google-auth-library": "^9.14.2",
+    "joi": "^17.13.3",
+    "joi-objectid": "^4.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "mailgun.js": "^10.2.4",
+    "mongoose": "^8.6.3",
+    "nanoid": "^5.0.7",
+    "passport": "^0.7.0",
+    "passport-google-oauth2": "^0.2.0"
+  },
+  "author": "juelle",
+  "license": "ISC"
+}
