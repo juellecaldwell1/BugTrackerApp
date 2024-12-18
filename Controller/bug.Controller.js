@@ -184,51 +184,65 @@ const classifyBug = async (req, res) => {
     const { value, error } = joiBugValidation.bugValidation2.validate(req.body);
     if (error) {
       return res.status(400).json({
-        error: `There was error that occurred Look here: ${error.details[0].message}`,
+        error: `There was an error: ${error.details[0].message}`,
       });
     }
 
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: "Invalid id" });
+      return res.status(400).json({ error: "Invalid ID" });
     }
-    const { classification } = value;
 
-    if (!classification)
+    const { classification } = value;
+    if (!classification) {
       return res
         .status(400)
-        .json({ error: "There is no classification entered" });
+        .json({ error: "Classification is required." });
+    }
 
     const person = req.cookies.UserId;
-
     decoded = jwt.verify(person, process.env.USER_TOKEN_SECRET);
     const userId = decoded.id;
 
     const findId = await userInfo.findById(userId);
     const findBugFirst = await bugSchema.bugInfo.findById(id);
 
-    console.log(findId);
-    console.log("Business Analyst");
+    if (!findId) {
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    if (!findBugFirst) {
+      return res.status(404).json({ error: "Bug not found." });
+    }
 
     if (!findId.role.includes("Business Analyst")) {
       if (findBugFirst.assignedTo.toString() !== findId._id.toString()) {
         return res.status(403).json({
           error:
-            "You don't have permission to edit this bug because it's not assigned to you or your not the author if this bug",
+            "You don't have permission to classify this bug because it's not assigned to you or you're not the author of this bug.",
         });
       }
+    }
+
+    const updateBug = await bugSchema.bugInfo.findByIdAndUpdate(
+      id,
+      { classification },
+      { new: true }
+    );
+
+    if (!updateBug) {
+      return res.status(400).json({ error: "Failed to classify the bug." });
     }
 
     sendUserActivity(
       `${findId.fullName}`,
       `has classified a bug and updated its status for further review.`
     );
-    
 
-    res.status(200).json({ message: `Bug ${updateBug._id}` });
+    res.status(200).json({ message: `Bug ${updateBug._id} classified successfully.` });
   } catch (error) {
-    console.log(error);
-    return res.status(400).json({ error: `${message}: ${error.message}` });
+    console.error(error);
+    return res.status(400).json({ error: `Error: ${error.message}` });
   }
 };
 

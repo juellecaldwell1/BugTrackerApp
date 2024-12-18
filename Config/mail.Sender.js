@@ -18,7 +18,7 @@ try{
     }
     console.log("the data : " , data )
     await mg.messages.create(process.env.MAILGUN_DOMAIN, data)
-      .then(msg => console.log("Email sent ", msg)) 
+      .then(msg => console.log("Email sent")) 
       .catch(err => console.error("The was an error sending the email ", err)); 
 }
 catch(error){

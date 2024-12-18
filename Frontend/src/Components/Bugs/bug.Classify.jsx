@@ -36,7 +36,7 @@ const ClassifyBug = ({ bringItems, fetch }) => {
         setError(error.response.data.error);
         toast.error(error.response.data.error);
       } else {
-        setError("Network Error");
+        setError("Network Error", error.message);
         toast.error("Network Error, try again");
       }
     }
